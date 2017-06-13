@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<head>
+    <meta content="utf-8" http-equiv="encoding">
+    <title> RACHEL'S VISUALIZATIONS - For Loop </title>
+</head>
+<body>
+    <style type="text/css">
+        body { background: #000000; font-family: sans-serif; }
+
+        .visualize-window { background: #ffffff;  margin: 0 auto; padding: 10px; }
+
+        .visualize-subwin { border-radius: 15px; padding: 10px; margin: 10px 10px; float: left; }
+        .visualize-subwin.win1 { background: #4f78ff; }
+        .visualize-subwin.win1 h2 { color: #acc0ff; font-weight: bold; }
+        .visualize-subwin.win2 { background: #ff4f78; color: #ffcad6; font-weight: bold; }
+        .visualize-subwin.win2 h2 { color: #ffcad6; font-weight: bold; }
+        .visualize-subwin.win3 { background: #49d424; color: #c6ffb7; font-weight: bold; }
+        .visualize-subwin.win3 h2 {color: #c6ffb7; font-weight: bold; }
+
+        table.code,
+        table.variables { background: #ffffff; border: solid 1px #aaaaaa; padding: 5px; margin: 0; font-family: monospace;  color: #000000; }
+
+        table.variables { font-size: 16px; }
+        
+        table.code .highlight { background: #cfdfff; }
+        table.variables .highlight { background: #ffcfcf; }
+
+        pre { background: #ffffff; border: solid 1px #aaaaaa; padding: 5px; margin: 0; font-family: monospace; color: #000000; font-size: 16px; }
+
+        .credit { font-size: 10px; color: #aaaaaa; }
+    </style>
+
+    <div class="visualize-window">
+        <div class="visualize-subwin win1">
+            <h2>Code</h2>
+
+<table class="code" style="width:400px;">
+    <tr id="line-0"> <td> 00 </td> <td>  </td> </tr>
+    <tr id="line-1"> <td> 01 </td> <td> for ( int outer = 0; outer < 4; outer++ ) </td> </tr>
+    <tr id="line-2"> <td> 02 </td> <td> { </td> </tr>
+    <tr id="line-3"> <td> 03 </td> <td> &nbsp; for ( int inner = 0; inner < 3; inner++ ) </td> </tr>
+    <tr id="line-4"> <td> 04 </td> <td> &nbsp; { </td> </tr>
+    <tr id="line-5"> <td> 05 </td> <td> &nbsp; &nbsp; PRINT( outer, inner ); </td> </tr>
+    <tr id="line-6"> <td> 06 </td> <td> &nbsp; } </td> </tr>
+    <tr id="line-7"> <td> 07 </td> <td> &nbsp; NEWLINE(); </td> </tr>
+    <tr id="line-8"> <td> 08 </td> <td> } </td> </tr>
+    <tr id="line-9"> <td> 09 </td> <td>  </td> </tr>
+</table>
+
+        </div>
+        
+        <div class="visualize-subwin win2">
+            <h2>Variables</h2>
+
+<table class="variables" style="width:300px;">
+    <tr> <td style="width: 50%;"> outer = </td> <td id="var-outer"> out of scope </td> </tr>
+    <tr> <td> inner = </td> <td id="var-inner"> out of scope </td> </tr>
+</table>
+        </div>
+        
+        <div style="clear:both;"></div>
+        
+        <div class="visualize-subwin win3">
+            <h2>Output</h2>
+
+<pre class="output" id="output" style="width:700px; height: 100px;">
+</pre>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div class="credit">
+            Visualization by Rachel Morris
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+$( document ).ready( function() {
+
+    timer = setInterval( nextFrame, 500 );
+
+    outer = 0;
+    inner = 0;
+
+    output = "";
+
+    counter = 0;
+
+    actions = [
+        { highlight: "line-0" },
+        { highlight: "line-1", outer: 0 },
+        { highlight: "line-2" },
+        
+        { highlight: "line-3", inner: 0 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 1 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 2 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 3 },
+        { highlight: "line-7", newline: true, inner: "out of scope" },
+        { highlight: "line-8" },
+
+        /* Outer loop */
+        
+        { highlight: "line-1", outer: 1 },
+        { highlight: "line-2" },
+        
+        { highlight: "line-3", inner: 0 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 1 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 2 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 3 },
+        { highlight: "line-7", newline: true, inner: "out of scope" },
+        { highlight: "line-8" },
+
+        /* Outer loop */
+        
+        { highlight: "line-1", outer: 2 },
+        { highlight: "line-2" },
+        
+        { highlight: "line-3", inner: 0 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 1 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 2 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 3 },
+        { highlight: "line-7", newline: true, inner: "out of scope" },
+        { highlight: "line-8" },
+
+        /* Outer loop */
+        
+        { highlight: "line-1", outer: 3 },
+        { highlight: "line-2" },
+        
+        { highlight: "line-3", inner: 0 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 1 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 2 },
+        { highlight: "line-4" },
+        { highlight: "line-5", output: true },
+        { highlight: "line-6" },
+        
+        { highlight: "line-3", inner: 3 },
+        { highlight: "line-7", newline: true, inner: "out of scope" },
+        { highlight: "line-8" },
+
+        { highlight: "line-1", outer: 4 },
+
+        { highlight: "line-9", outer: "out of scope" },
+
+        { end: true }
+    ];
+
+    function nextFrame() {
+
+        $( ".code tr" ).removeClass( "highlight" );
+        $( "#" + actions[ counter ].highlight ).addClass( "highlight" );
+
+        $( "#var-outer" ).removeClass( "highlight" );
+        $( "#var-inner" ).removeClass( "highlight" );
+
+        if ( typeof( actions[ counter ].outer ) != "undefined" ) {
+            $( "#var-outer" ).addClass( "highlight" );
+            outer = actions[ counter ].outer;
+            $( "#var-outer" ).html( outer );
+        }
+        
+        if ( typeof( actions[ counter ].inner ) != "undefined" ) {
+            $( "#var-inner" ).addClass( "highlight" );
+            inner = actions[ counter ].inner;
+            $( "#var-inner" ).html( inner );
+        }
+
+        if ( typeof( actions[ counter ].output ) != "undefined" ) {
+            output += outer + ", " + inner + "\t";
+            $( "#output" ).html( output );
+        }
+        
+        if ( typeof( actions[ counter ].newline ) != "undefined" ) {
+            output += "\n";
+            $( "#output" ).html( output );
+        }
+
+        if ( typeof( actions[ counter ].end ) != "undefined" ) {
+            clearInterval( timer );
+        }
+
+        counter++;
+    }
+    
+} );
+
+
+</script>
+
+    
+</body>
