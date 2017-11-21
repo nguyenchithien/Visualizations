@@ -21,6 +21,9 @@ main = {
         main.settings = pSettings;
         main.canvasWindow = pCanvasWindow;
 
+        main.background = new Image();
+        main.background.src = "images/background.png";
+
         window.addEventListener( "mousedown",   main.click, false );
         window.addEventListener( "keydown",     main.keydown, false );
         window.addEventListener( "keyup",       main.keyup, false );
@@ -30,77 +33,35 @@ main = {
 
     generateNodes : function() {
         console.log( "Generate nodes" );
+        main.nodes.push( { name : "A", x : 100, y : 675 } );
+        main.nodes.push( { name : "B", x : 350, y : 675 } );
+        main.nodes.push( { name : "C", x : 600, y : 675 } );
+        main.nodes.push( { name : "D", x : 150, y : 375 } );
+        main.nodes.push( { name : "E", x : 300, y : 375 } );
+        main.nodes.push( { name : "F", x : 650, y : 375 } );
+        main.nodes.push( { name : "G", x : 100, y : 75 } );
+        main.nodes.push( { name : "H", x : 350, y : 75 } );
+        main.nodes.push( { name : "I", x : 600, y : 75 } );
 
-        // Outer nodes
-        main.nodes.push( { name : "", x : 100, y : 350 } );
-        main.nodes.push( { name : "", x : 650, y : 350 } );
+        // paths
+        main.staticEdges.push( { startX : 100, startY : 675, endX : 150, endY : 375 } );
+        main.staticEdges.push( { startX : 100, startY : 75, endX : 150, endY : 375 } );
         
-        main.nodes.push( { name : "", x : 200, y : 650 } );
-        main.nodes.push( { name : "", x : 550, y : 650 } );
+        main.staticEdges.push( { startX : 350, startY : 675, endX : 300, endY : 375 } );
+        main.staticEdges.push( { startX : 350, startY : 75, endX : 300, endY : 375 } );
         
-        main.nodes.push( { name : "", x : 375, y : 100 } );
-
-        main.staticEdges.push( { startX : 100, startY : 350, endX : 200, endY : 650 } );
-        main.staticEdges.push( { startX : 550, startY : 650, endX : 200, endY : 650 } );
-        main.staticEdges.push( { startX : 550, startY : 650, endX : 650, endY : 350 } );
-        main.staticEdges.push( { startX : 100, startY : 350, endX : 375, endY : 100 } );
-        main.staticEdges.push( { startX : 650, startY : 350, endX : 375, endY : 100 } );
-
-        // Middle nodes
-        main.nodes.push( { name : "", x : 200, y : 375 } );
-        main.nodes.push( { name : "", x : 550, y : 375 } );
+        main.staticEdges.push( { startX : 300, startY : 375, endX : 650, endY : 375 } );
+        main.staticEdges.push( { startX : 600, startY : 675, endX : 650, endY : 375 } );
+        main.staticEdges.push( { startX : 600, startY : 75, endX : 650, endY : 375 } );
         
-        main.nodes.push( { name : "", x : 285, y : 285 } );
-        main.nodes.push( { name : "", x : 460, y : 285 } );
-        
-        main.staticEdges.push( { startX : 100, startY : 350, endX : 200, endY : 375 } );
-        main.staticEdges.push( { startX : 650, startY : 350, endX : 550, endY : 375 } );
-        
-        main.nodes.push( { name : "", x : 250, y : 550 } );
-        main.nodes.push( { name : "", x : 500, y : 550 } );
-        
-        main.nodes.push( { name : "", x : 225, y : 470 } );
-        main.nodes.push( { name : "", x : 520, y : 470 } );
-        
-        main.staticEdges.push( { startX : 200, startY : 650, endX : 250, endY : 550 } );
-        main.staticEdges.push( { startX : 550, startY : 650, endX : 500, endY : 550 } );
-        
-        main.nodes.push( { name : "", x : 375, y : 200 } );
-        main.nodes.push( { name : "", x : 375, y : 548 } );
-        main.staticEdges.push( { startX : 375, startY : 100, endX : 375, endY : 200 } );
-        
-        main.staticEdges.push( { startX : 375, startY : 200, endX : 200, endY : 375 } );
-        main.staticEdges.push( { startX : 375, startY : 200, endX : 550, endY : 375 } );
-        main.staticEdges.push( { startX : 200, startY : 375, endX : 250, endY : 550 } );
-        main.staticEdges.push( { startX : 550, startY : 375, endX : 500, endY : 550 } );
-        main.staticEdges.push( { startX : 250, startY : 550, endX : 500, endY : 550 } );
-
-        // Inner nodes
-        main.nodes.push( { name : "", x : 300, y : 350 } );
-        main.nodes.push( { name : "", x : 450, y : 350 } );
-        main.staticEdges.push( { startX : 300, startY : 350, endX : 285, endY : 285 } );
-        main.staticEdges.push( { startX : 450, startY : 350, endX : 460, endY : 285 } );
-        
-        main.nodes.push( { name : "", x : 275, y : 425 } );
-        main.nodes.push( { name : "", x : 475, y : 425 } );
-        main.staticEdges.push( { startX : 275, startY : 425, endX : 225, endY : 470 } );
-        main.staticEdges.push( { startX : 475, startY : 425, endX : 520, endY : 470 } );
-        
-        main.nodes.push( { name : "", x : 375, y : 500 } );
-        main.staticEdges.push( { startX : 375, startY : 500, endX : 375, endY : 548 } );
-        
-        main.staticEdges.push( { startX : 300, startY : 350, endX : 450, endY : 350 } );
-        main.staticEdges.push( { startX : 450, startY : 350, endX : 475, endY : 425 } );
-        main.staticEdges.push( { startX : 475, startY : 425, endX : 375, endY : 500 } );
-        main.staticEdges.push( { startX : 375, startY : 500, endX : 275, endY : 425 } );
-        main.staticEdges.push( { startX : 275, startY : 425, endX : 300, endY : 350 } );
+        //main.staticEdges.push( { startX : 150, startY : 375, endX : 300, endY : 375 } );
     },
 
     update : function() {
     },
 
     draw : function() {
-        var bgColor = "#ffffff";
+        var bgColor = "#8afc90";
         var nodeColor = "#34086c";
         var edgeLabelColor = nodeColor;
         
@@ -108,36 +69,40 @@ main = {
         main.canvasWindow.fillStyle = bgColor;
         main.canvasWindow.fillRect( 0, 0, main.settings.width, main.settings.height );
 
+        // Draw background
+        main.canvasWindow.drawImage( main.background, 0, 0 );
+
         main.canvasWindow.font = "15px Arial";
         main.canvasWindow.fillStyle = "black";
-        main.canvasWindow.fillText( "Hamiltonian Cycle", 10, 15 );
-        main.canvasWindow.fillText( "Click two nodes to connect them.", 10, 30 );
-        main.canvasWindow.fillText( "'C' clears the path.", 10, 45 );
-        //main.canvasWindow.fillText( "'R' generates a random path.", 10, 60 );
+        main.canvasWindow.fillText( "Seven Bridges of Königsberg", 10, 15 );
+        main.canvasWindow.fillText( "Click two nodes to connect them.", 250, 15 );
+        main.canvasWindow.fillText( "'C' clears the path.", 10, 30 );
+        main.canvasWindow.fillText( "'R' generates a random path.", 250, 30 );
         
-        //main.canvasWindow.font = "20px Arial";
-        //main.canvasWindow.fillText( "Total distance: " + main.distance, 10, 750 );
+        main.canvasWindow.font = "20px Arial";
+        main.canvasWindow.fillText( "Total distance: " + main.distance, 10, 750 );
 
         main.canvasWindow.font = "15px Arial";
         main.canvasWindow.fillStyle = nodeColor;
         main.canvasWindow.fillText( "Programmed by Rachel Morris", main.settings.width - 220, main.settings.height - 15 );
-        
+
         // Draw edges
         for ( var i = 0; i < main.staticEdges.length; i++ )
         {
-            main.canvasWindow.strokeStyle = "#999999";
-            main.canvasWindow.lineWidth = 1;
+            main.canvasWindow.strokeStyle = "#ffaa00";
+            main.canvasWindow.lineWidth = 3;
             main.canvasWindow.beginPath();
             main.canvasWindow.moveTo( main.staticEdges[i].startX, main.staticEdges[i].startY );
             main.canvasWindow.lineTo( main.staticEdges[i].endX, main.staticEdges[i].endY );
             main.canvasWindow.stroke();
+            main.canvasWindow.lineWidth = 1;
         }
         
         // Draw edges
         for ( var i = 0; i < main.edges.length; i++ )
         {
-            main.canvasWindow.strokeStyle = "#ff0000";
-            main.canvasWindow.lineWidth = 10;
+            main.canvasWindow.lineWidth = 5;
+            main.canvasWindow.strokeStyle = "#000000";
             main.canvasWindow.beginPath();
             main.canvasWindow.moveTo( main.edges[i].startX, main.edges[i].startY );
             main.canvasWindow.lineTo( main.edges[i].endX, main.edges[i].endY );
@@ -145,6 +110,7 @@ main = {
             main.canvasWindow.font = "20px Arial";
             main.canvasWindow.fillStyle = edgeLabelColor;
             main.canvasWindow.fillText( main.edges[i].counter, (main.edges[i].startX + main.edges[i].endX) / 2, (main.edges[i].startY + main.edges[i].endY) / 2 );
+            main.canvasWindow.lineWidth = 1;
         }
 
         // Draw nodes
@@ -159,11 +125,10 @@ main = {
         // Draw selection
         if ( main.lastClick != -1 && main.nodes.length > 0 )
         {
-            main.canvasWindow.lineWidth = 1;
             main.canvasWindow.beginPath();
             var ctrX = main.nodes[main.lastClick].x;
             var ctrY = main.nodes[main.lastClick].y;
-            main.canvasWindow.strokeStyle = "#0000ff";
+            main.canvasWindow.strokeStyle = "#ff0000";
             main.canvasWindow.arc( ctrX, ctrY, 15, 0, 2 * Math.PI );
             main.canvasWindow.stroke();
         }
@@ -215,18 +180,12 @@ main = {
 
     generatePath : function( startNode ) {
         main.clear();
-        startNode = 0;
         var lastNode = startNode;
         var newNode = 0;
 
-        var availableNodes = [];
+        var availableNodes = [ 0, 2, 3, 4, 5 ];
 
-        for ( var i = 1; i < main.nodes.length; i++ )
-        {
-            availableNodes.push( i );
-        }
-
-        for ( var i = 0; i < main.nodes.length - 1; i++ )
+        for ( var i = 0; i < 5; i++ )
         {
             var rand = Math.floor( Math.random() * ( availableNodes.length ) );
             newNode = availableNodes[rand];
