@@ -135,6 +135,7 @@ main = {
         {
             main.distance = 0;
             main.edges.splice( 0, main.edges.length );
+            main.lastClick = -1;
         }
     },
 
