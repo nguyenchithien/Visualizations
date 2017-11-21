@@ -19,6 +19,10 @@ main = {
     init : function( pSettings, pCanvasWindow ) {
         main.settings = pSettings;
         main.canvasWindow = pCanvasWindow;
+        main.homeImage = new Image();
+        main.homeImage.src = "images/home.png";
+        main.background = new Image();
+        main.background.src = "images/background.png";
 
         window.addEventListener( "mousedown",   main.click, false );
         window.addEventListener( "keydown",     main.keydown, false );
@@ -29,12 +33,14 @@ main = {
 
     generateNodes : function() {
         console.log( "Generate nodes" );
-        main.nodes.push( { name : "Olathe", x : 100, y : 600 } );
-        main.nodes.push( { name : "Overland Park", x : 200, y : 400 } );
-        main.nodes.push( { name : "Lee's Summit", x : 500, y : 575 } );
-        main.nodes.push( { name : "Raytown", x : 450, y : 375 } );
+        main.nodes.push( { name : "Olathe", x : 150, y : 680 } );
+        main.nodes.push( { name : "Overland Park", x : 270, y : 550 } );
+        main.nodes.push( { name : "Lee's Summit", x : 570, y : 640 } );
+        main.nodes.push( { name : "Raytown", x : 500, y : 520 } );
         main.nodes.push( { name : "Kansas City", x : 400, y : 200 } );
-        main.nodes.push( { name : "Independence", x : 500, y : 250 } );
+        main.nodes.push( { name : "Independence", x : 550, y : 400 } );
+        main.nodes.push( { name : "Liberty", x : 550, y : 200 } );
+        main.nodes.push( { name : "Bonner Springs", x : 100, y : 450 } );
     },
 
     update : function() {
@@ -48,25 +54,28 @@ main = {
         // Fill background
         main.canvasWindow.fillStyle = bgColor;
         main.canvasWindow.fillRect( 0, 0, main.settings.width, main.settings.height );
+        main.canvasWindow.drawImage( main.background, 0, 0 );
 
         main.canvasWindow.font = "15px Arial";
-        main.canvasWindow.fillStyle = "black";
+        main.canvasWindow.fillStyle = "#aaffaa";
         main.canvasWindow.fillText( "Travelling Salesperson", 10, 15 );
-        main.canvasWindow.fillText( "Click two nodes to connect them.", 10, 30 );
-        main.canvasWindow.fillText( "'C' clears the path.", 10, 45 );
-        main.canvasWindow.fillText( "'R' generates a random path.", 10, 60 );
+        main.canvasWindow.fillText( "Click two nodes to connect them.", 200, 15 );
+        main.canvasWindow.fillText( "'C' clears the path.", 500, 15 );
+        main.canvasWindow.fillText( "'R' generates a random path.", 500, 30 );
         
         main.canvasWindow.font = "20px Arial";
-        main.canvasWindow.fillText( "Total distance: " + main.distance, 10, 750 );
+        var dist = parseFloat(Math.round(main.distance * 100) / 100).toFixed(2);
+        main.canvasWindow.fillText( "Total distance: " + dist, 10, 750 );
 
         main.canvasWindow.font = "15px Arial";
-        main.canvasWindow.fillStyle = nodeColor;
+        main.canvasWindow.fillStyle = "#66ff66";
         main.canvasWindow.fillText( "Programmed by Rachel Morris", main.settings.width - 220, main.settings.height - 15 );
 
         // Draw edges
         for ( var i = 0; i < main.edges.length; i++ )
         {
-            main.canvasWindow.strokeStyle = "#000000";
+            main.canvasWindow.strokeStyle = "#aaaaaa";
+            main.canvasWindow.lineWidth = 5;
             main.canvasWindow.beginPath();
             main.canvasWindow.moveTo( main.edges[i].startX, main.edges[i].startY );
             main.canvasWindow.lineTo( main.edges[i].endX, main.edges[i].endY );
@@ -74,13 +83,16 @@ main = {
             main.canvasWindow.font = "20px Arial";
             main.canvasWindow.fillStyle = edgeLabelColor;
             main.canvasWindow.fillText( main.edges[i].counter, (main.edges[i].startX + main.edges[i].endX) / 2, (main.edges[i].startY + main.edges[i].endY) / 2 );
+            main.canvasWindow.lineWidth = 1;
         }
 
         // Draw nodes
         for ( var i = 0; i < main.nodes.length; i++ )
         {
-            main.canvasWindow.fillStyle = nodeColor;
-            main.canvasWindow.fillRect( main.nodes[i].x, main.nodes[i].y, 5, 5 );
+            //main.canvasWindow.fillStyle = nodeColor;
+            //main.canvasWindow.fillRect( main.nodes[i].x, main.nodes[i].y, 5, 5 );
+            main.canvasWindow.drawImage( main.homeImage, main.nodes[i].x-8, main.nodes[i].y-8 );
+            main.canvasWindow.fillStyle = "#ffffff";
             main.canvasWindow.font = "15px Arial";
             main.canvasWindow.fillText( main.nodes[i].name, main.nodes[i].x + 10, main.nodes[i].y + 10 );
         }
@@ -91,9 +103,11 @@ main = {
             main.canvasWindow.beginPath();
             var ctrX = main.nodes[main.lastClick].x;
             var ctrY = main.nodes[main.lastClick].y;
+            main.canvasWindow.lineWidth = 3;
             main.canvasWindow.strokeStyle = "#ff0000";
             main.canvasWindow.arc( ctrX, ctrY, 15, 0, 2 * Math.PI );
             main.canvasWindow.stroke();
+            main.canvasWindow.lineWidth = 1;
         }
     },
 
