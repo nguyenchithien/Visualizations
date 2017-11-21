@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Discrete Math - Expected Value in Games of Chance</title>
+
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+
+        <script src="illustration-framework/jquery-3.1.1.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="illustration-framework/base.js"></script>
+
+        <link rel="shortcut icon" href="../../favico.png">
+    </head>
+
+    <body>
+        <style type="text/css">
+            body { background: #000000; color: #aaaaaa; }
+
+            a, a.active, a.link, a.visited { color: #ffffff; }
+
+            canvas { display: block; margin: 0 auto; border: solid 1px #aaaaaa; width: 768px; height: 768px; }
+
+            .center-text { text-align: center; font-size: 12px; font-family: sans-serif; }
+        </style>
+
+		<div class="canvas-container">
+			<canvas id="cnvWindow" width="768" height="768">
+			</canvas>
+		</div>
+
+        <div class="instructions center-text">
+            <p>
+                
+            </p>
+        </div>
+
+        <div class="about center-text">
+            <p>
+                <a href="../../index.html">Back to the Visualizations main page</a>
+            </p>
+        </div>
+
+
+        <div id="custom-modal" style="display: none; padding: 10px; border: solid 3px #000000; background: #ffffff; width: 400px; font-family: sans-serif; color: #000000; position: absolute; top:10px; left: 0; right: 0; margin-left: auto; margin-right: auto;">
+            <h2>Custom Trials</h2>
+
+            <table class="inputs" style="width:100%;" id="custom-data">
+                <thead>
+                    <tr>
+                        <th>#</th><th>Value</th><th>Probability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div class="blah" style="text-align:right;">
+                <input type="button" id="ok-custom" value="OK" style="margin-top: 10px;">
+            </div>
+        </div>
+
+    </body>
+</html>
