@@ -111,8 +111,8 @@ main = {
         main.canvasWindow.font = "15px Arial";
         main.canvasWindow.fillStyle = "black";
         main.canvasWindow.fillText( "Hamiltonian Cycle", 10, 15 );
-        main.canvasWindow.fillText( "Click two nodes to connect them.", 10, 30 );
-        main.canvasWindow.fillText( "'C' clears the path.", 10, 45 );
+        main.canvasWindow.fillText( "Click two nodes to connect them.", 200, 15 );
+        main.canvasWindow.fillText( "'C' clears the path.", 500, 15 );
         //main.canvasWindow.fillText( "'R' generates a random path.", 10, 60 );
         
         //main.canvasWindow.font = "20px Arial";
