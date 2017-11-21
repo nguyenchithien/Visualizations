@@ -76,8 +76,8 @@ main = {
         main.canvasWindow.fillStyle = "black";
         main.canvasWindow.fillText( "Seven Bridges of Königsberg", 10, 15 );
         main.canvasWindow.fillText( "Click two nodes to connect them.", 250, 15 );
-        main.canvasWindow.fillText( "'C' clears the path.", 10, 30 );
-        main.canvasWindow.fillText( "'R' generates a random path.", 250, 30 );
+        main.canvasWindow.fillText( "'C' clears the path.", 500, 15 );
+        //main.canvasWindow.fillText( "'R' generates a random path.", 250, 30 );
         
         main.canvasWindow.font = "20px Arial";
         main.canvasWindow.fillText( "Total distance: " + main.distance, 10, 750 );
@@ -180,12 +180,18 @@ main = {
 
     generatePath : function( startNode ) {
         main.clear();
+        startNode = 0;
         var lastNode = startNode;
         var newNode = 0;
 
-        var availableNodes = [ 0, 2, 3, 4, 5 ];
+        var availableNodes = [];
 
-        for ( var i = 0; i < 5; i++ )
+        for ( var i = 1; i < main.nodes.length; i++ )
+        {
+            availableNodes.push( i );
+        }
+
+        for ( var i = 0; i < main.nodes.length - 1; i++ )
         {
             var rand = Math.floor( Math.random() * ( availableNodes.length ) );
             newNode = availableNodes[rand];

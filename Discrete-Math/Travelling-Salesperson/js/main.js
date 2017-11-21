@@ -143,12 +143,18 @@ main = {
 
     generatePath : function( startNode ) {
         main.clear();
+        startNode = 0;
         var lastNode = startNode;
         var newNode = 0;
 
-        var availableNodes = [ 0, 2, 3, 4, 5 ];
+        var availableNodes = [];
 
-        for ( var i = 0; i < 5; i++ )
+        for ( var i = 1; i < main.nodes.length; i++ )
+        {
+            availableNodes.push( i );
+        }
+
+        for ( var i = 0; i < main.nodes.length - 1; i++ )
         {
             var rand = Math.floor( Math.random() * ( availableNodes.length ) );
             newNode = availableNodes[rand];
