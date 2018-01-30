@@ -1,0 +1,76 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Binary Sequence </title>
+		
+		<script>
+		function Factorial( n ) {
+			if ( n == 0 || n == 1 )
+				return 1;
+			
+			else
+				return n * Factorial( n - 1 );
+		}
+		
+		function Combination( n, r ) {
+			return Factorial(n) / ( Factorial(r) * Factorial(n-r) );
+		}
+		
+		function Solve() {
+			var ones = document.getElementById( "count1" ).value;
+			var zeroes = document.getElementById( "count0" ).value;
+			var r = parseInt( ones );
+			var n = parseInt( zeroes - ones );
+			var result = Combination( n, r );
+			
+			var text = "r = " + ones + ", n - r = " + zeroes + ", n = " + n;
+			
+			document.getElementById( "result" ).value = text;
+		}
+		</script>
+	</head>
+
+	<body>
+        <style type="text/css">
+            body { background: #000000; color: #aaaaaa; font-family: sans-serif; }
+
+            .footer { font-size: 10pt; text-align:center; }
+
+            a, a.active, a.link, a.visited { color: #ffffff; }
+
+            canvas { display: block; margin: 0 auto; border: solid 1px #aaaaaa; width: 768px; height: 768px; }
+
+            .center-text { text-align: center; font-size: 12px; font-family: sans-serif; }
+            
+            .window { border: solid 2px #72b13a; border-radius: 15px;  margin: 0 auto; padding: 10px; background: #caff9a; color: #356708; font-weight: bold; }
+            
+            .field { float: left; width: 16%; text-align: center; }
+            
+            .clear { clear: both; }
+            
+            .result { width: 100%; }
+            
+            .output input[type=text] { background: none; border: none; text-align: center; }
+        </style>
+        
+        <div class="window">    
+			<div class="field">How many 1's? <input type="text" id="count1"> </div>
+			<div class="field">How many 0's? <input type="text" id="count0"> </div>
+			<div class="field"> <input type="button" value="Solve" onclick="Solve()"> </div>
+			<div class="clear"></div>
+			<div class="output">
+				<input type="text" id="result" class="result">
+			</div>
+			
+        </div>
+        
+        <div class="footer">
+            <p> Binary Sequence Solver </p>
+            <p><a href="https://github.com/Rachels-Courses/Visualizations">https://github.com/Rachels-Courses/Visualizations</a></p>
+        </div>
+		
+			
+	</body>
+</html>
