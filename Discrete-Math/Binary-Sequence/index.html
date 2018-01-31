@@ -21,13 +21,18 @@
 		function Solve() {
 			var ones = document.getElementById( "count1" ).value;
 			var zeroes = document.getElementById( "count0" ).value;
-			var r = parseInt( ones );
-			var n = parseInt( zeroes - ones );
+			var r = parseInt( ones ); // r = ones
+			var n = parseInt( zeroes ) + parseInt( r ); // n - r = zeroes;   n = zeroes + r
+            console.log( n, r );
 			var result = Combination( n, r );
 			
-			var text = "r = " + ones + ", n - r = " + zeroes + ", n = " + n;
-			
-			document.getElementById( "result" ).value = text;
+			var list = document.getElementById( "list" );
+
+            list.innerHTML = "<li>Ones = r = " + n + "</li> " +
+                            "<li>Zeroes = n - r = " + zeroes + "</li>" +
+                            "<li>n = " + n + "</li>" +
+                            "<li>To solve: C(" + n + ", " + r + ") = " + n + "! / (" + r + "! (" + n + " - " + r + " )!) = " + result + "</li>";
+            
 		}
 		</script>
 	</head>
@@ -44,7 +49,7 @@
 
             .center-text { text-align: center; font-size: 12px; font-family: sans-serif; }
             
-            .window { border: solid 2px #72b13a; border-radius: 15px;  margin: 0 auto; padding: 10px; background: #caff9a; color: #356708; font-weight: bold; }
+            .window { border: solid 2px #72b13a; border-radius: 15px;  padding: 10px; background: #caff9a; color: #356708; font-weight: bold; }
             
             .field { float: left; width: 16%; text-align: center; }
             
@@ -53,18 +58,28 @@
             .result { width: 100%; }
             
             .output input[type=text] { background: none; border: none; text-align: center; }
+
+            .inputs input[type=button] { width: 100%; }
+            .inputs { width: 25%; float: left; }
+
+            .outputs { width: 70%; float: right; }
         </style>
         
-        <div class="window">    
-			<div class="field">How many 1's? <input type="text" id="count1"> </div>
-			<div class="field">How many 0's? <input type="text" id="count0"> </div>
-			<div class="field"> <input type="button" value="Solve" onclick="Solve()"> </div>
-			<div class="clear"></div>
-			<div class="output">
-				<input type="text" id="result" class="result">
-			</div>
-			
+        <div class="inputs window">
+            <h2>Inputs</h2>
+			<p> How many 1's? <input type="text" id="count1"> </p>
+			<p> How many 0's? <input type="text" id="count0"> </p>
+			<p><input type="button" value="Solve" onclick="Solve()"></p>
         </div>
+
+        <div class="outputs window">
+            <h2>Outputs</h2>
+
+            <ul id="list">
+            </ul>
+        </div>
+
+        <div class="clear"></div>
         
         <div class="footer">
             <p> Binary Sequence Solver </p>
