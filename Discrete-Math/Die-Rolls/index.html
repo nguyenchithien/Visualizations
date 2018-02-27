@@ -1,0 +1,127 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Die Roll </title>
+		
+		<script>		
+			function RollDie() {
+				// Between 1 and 6
+				var min = 1;
+				var max = 6;
+				return parseInt( Math.random() * ( max - min ) + min );
+			}
+			
+			function Compute() {
+				// Get n and r
+                var rolls = parseInt( document.getElementById( "input-dierolls" ).value );
+				
+				var sum = 0;
+				
+				var list = document.getElementById( "out_rolls" );
+				
+					document.getElementById( "outcomes" ).innerHTML = "";
+				
+				for ( var i = 0; i < rolls; i++ )
+				{
+					var roll = RollDie();
+					sum += roll;
+					
+					document.getElementById( "outcomes" ).innerHTML += "<li><img src='die-" + roll + ".png'> (" + roll + ")</li>";
+				}
+				
+				
+				var average = sum / rolls;     
+
+				document.getElementById( "out_average" ).value = average;				
+				document.getElementById( "out_rolls" ).value = rolls;				
+			}
+		</script>
+	</head>
+
+	<body>
+        <style type="text/css">
+            body { background: #000000; color: #aaaaaa; font-family: sans-serif; }
+
+            .footer { font-size: 10pt; text-align:center; }
+
+            a, a.active, a.link, a.visited { color: #ffffff; }
+
+            canvas { display: block; margin: 0 auto; border: solid 1px #aaaaaa; width: 768px; height: 768px; }
+
+            .center-text { text-align: center; font-size: 12px; font-family: sans-serif; }
+            
+            .window { border: solid 2px #72b13a; border-radius: 15px;  margin: 0 auto; padding: 10px; 
+				background: #caff9a; color: #356708; font-weight: bold;
+				width: 50%;
+				}
+            
+            .field { float: left; width: 16%; text-align: center; }
+            
+			.col-half { width: 50%; float: left; }
+            .clear { clear: both; }
+            
+            input[type=text] { width: 100px; }
+			input[type=button] { width: 100%; }
+            
+            .output input[type=text] { background: none; border: none; text-align: center; }
+			
+			.result-window { overflow-y: scroll; height: 300px; background: #72b13a; color: #ffffff; }
+        </style>
+        
+        <div class="window"> 
+			
+			<div class="col-half">
+				Roll the die 
+			</div>			
+			<div class="col-half">
+				<input type="text" value="" class="input" id="input-dierolls"> times.
+			</div>			
+			<div class="clear"></div>
+			        
+			<br>
+			
+			<div class="col-half">
+				&nbsp;
+			</div>			
+			<div class="col-half">
+				<input type="button" value="Roll it!" onclick="Compute()">
+			</div>			
+			<div class="clear"></div>
+			
+			<br>
+            
+			<div class="col-half">
+				Average value:
+			</div>			
+			<div class="col-half">
+				<input type="text" value="" id="out_average" disabled> 
+			</div>			
+			<div class="clear"></div>
+			
+			<br>
+
+			<div class="col-half">
+				All outcomes:
+			</div>			
+			<div class="col-half result-window">
+				<ol id="outcomes">
+				</ol>
+			</div>			
+			<div class="clear"></div>
+			
+			<br>
+			
+			
+			
+        </div>
+        
+        <div class="footer">
+            <p> Die Roll Simulator </p>
+            <p><a href="https://rachels-courses.github.io/Visualizations/">&lt;&lt; All Visualizations</a></p>
+        </div>
+		
+			
+	</body>
+</html>
